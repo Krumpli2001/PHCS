@@ -62,13 +62,16 @@ void read_dbf(std::string file_name)
     for (int field = 0; field < numFields; field++)
     {
         // MEGLESNI
-        //  std::string fieldName;
-        char fieldName[15];
+        // std::string fieldName(15, '\0');
+        // file_name.resize(12);
+        // char fieldName[15];
+
+        std::array<char, 12> fieldName;
         int width, decimals;
-        DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName, &width, &decimals);
-        // std::string output = convertToUtf8(fieldName, "CP850");
-        // std::cout << fieldName.capacity() << ' ' << width << '\n';
-        std::println("{}", fieldName);
+        DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName.data(), &width, &decimals);
+        std::string output = convertToUtf8(fieldName.data(), "CP850");
+        std::cout << fieldName.size() << ' ' << width << '\n';
+        std::println("{}", fieldName.data());
     }
 
     for (int rec = 0; rec < numRecords; rec++)

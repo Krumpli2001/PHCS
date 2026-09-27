@@ -25,6 +25,8 @@ else()
     set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 endif()
 
+# include(vcpkg)
+
 find_package(pugixml CONFIG REQUIRED)
 find_package(miniz CONFIG REQUIRED)
 find_package(OpenXLSX CONFIG REQUIRED)

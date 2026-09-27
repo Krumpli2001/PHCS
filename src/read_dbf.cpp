@@ -6,6 +6,7 @@
 #include <iconv.h>
 #endif
 
+// UTF-8-á
 #ifdef _WIN64
 std::string convertToUtf8(const std::string &input, UINT codePage)
 {
@@ -60,15 +61,15 @@ void read_dbf(std::string file_name)
 
     for (int field = 0; field < numFields; field++)
     {
-        std::string fieldName;
+        // MEGLESNI
+        //  std::string fieldName;
+        char fieldName[15];
         int width, decimals;
-        DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName.data(), &width, &decimals);
-        // std::cout << fieldName << " (" << width << ")\n";
-        convertToUtf8(fieldName, "CP850");
-        std::println("{}", field);
+        DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName, &width, &decimals);
+        // std::string output = convertToUtf8(fieldName, "CP850");
+        // std::cout << fieldName.capacity() << ' ' << width << '\n';
+        std::println("{}", fieldName);
     }
-    // const char* codePage = DBFGetCodePage(dbf);
-    // std::println("{}", std::string(codePage));
 
     for (int rec = 0; rec < numRecords; rec++)
     {
@@ -77,9 +78,7 @@ void read_dbf(std::string file_name)
             if (DBFIsAttributeNULL(dbf, rec, field))
                 continue;
             std::string value = DBFReadStringAttribute(dbf, rec, field);
-            // std::cout << value << " ";
-            convertToUtf8(value, "CP850");
-            std::print("{} ", value);
+            std::print("{} ", convertToUtf8(value, "CP850"));
         }
         std::cout << "\n";
     }

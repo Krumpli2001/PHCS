@@ -12,10 +12,12 @@ std::string cellToString(const OpenXLSX::XLCellValue& value) {
     }
 }
 
-void read_xlsx(std::string file_name){
+std::optional<std::vector<s_xlsx>> read_xlsx(std::string file_name){
     OpenXLSX::XLDocument doc;
     doc.open(file_name);
     auto wks = doc.workbook().worksheet("Adózók adatai");
+    std::vector<s_xlsx> xlsx_data;
+    xlsx_data.reserve(wks.rowCount()); // Reserve space for all rows except the header
 
     auto range = wks.range(); // full used range
     for (const auto& row : wks.rows()) {
@@ -25,6 +27,7 @@ void read_xlsx(std::string file_name){
         }
         std::cout << "\n";
     }
-
+    
     doc.close();
+    return std::nullopt;
 }

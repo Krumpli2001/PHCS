@@ -70,7 +70,7 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
 
         std::array<char, 12> fieldName;
         int width, decimals;
-        DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName.data(), &width, &decimals);
+        [[maybe_unused]] DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName.data(), &width, &decimals);
         // std::string output = convertToUtf8(fieldName.data(), "CP850");
     }
 
@@ -81,7 +81,7 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
 
         for (int rec = 0; rec < numRecords; rec++)
         {
-                s_tm record;
+            s_tm record;
             for (int field = 0; field < numFields; field++)
             {
                 if (DBFIsAttributeNULL(dbf, rec, field))
@@ -155,8 +155,9 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
                     break;
                 }
             }
-                tm_records.push_back(record);
+            tm_records.push_back(record);
         }
+        DBFClose(dbf);
         return tm_records;
     }
     else if (tipus == UJ)
@@ -166,7 +167,7 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
 
         for (int rec = 0; rec < numRecords; rec++)
         {
-                s_uj record;
+            s_uj record;
             for (int field = 0; field < numFields; field++)
             {
                 // std::println("{}", convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850"));
@@ -253,10 +254,9 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
                     break;
                 }
             }
-                uj_records.push_back(record);
+            uj_records.push_back(record);
         }
-
-        std::println("4. UJ rekord: {}", uj_records[3].NEV);
+        DBFClose(dbf);
         return uj_records;
     }
     else if (tipus == TSZEM)
@@ -266,7 +266,7 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
 
         for (int rec = 0; rec < numRecords; rec++)
         {
-                s_tszem record;
+            s_tszem record;
             for (int field = 0; field < numFields; field++)
             {
                 if (DBFIsAttributeNULL(dbf, rec, field))
@@ -382,22 +382,11 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
                     break;
                 }
             }
-                tszem_records.push_back(record);
+            tszem_records.push_back(record);
         }
+        DBFClose(dbf);
         return tszem_records;
     }
-
-    // for (int rec = 0; rec < numRecords; rec++)
-    // {
-    //     for (int field = 0; field < numFields; field++)
-    //     {
-    //         if (DBFIsAttributeNULL(dbf, rec, field))
-    //             continue;
-    //         std::string value = DBFReadStringAttribute(dbf, rec, field);
-    //         std::print("{} ", convertToUtf8(value, "CP850"));
-    //     }
-    //     std::cout << "\n";
-    // }
 
     return std::nullopt;
 

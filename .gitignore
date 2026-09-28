@@ -2,4 +2,5 @@ build/*
 CMakeCache.txt
 asstes/.*
 .vs/*
+.vscode/*
 out/*

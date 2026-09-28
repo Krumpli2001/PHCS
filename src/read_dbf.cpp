@@ -8,6 +8,7 @@
 
 // UTF-8-á
 #ifdef _WIN64
+#define CP850 CP_ACP
 std::string convertToUtf8(const std::string &input, UINT codePage)
 {
     int wideLen = MultiByteToWideChar(codePage, 0, input.c_str(), -1, nullptr, 0);
@@ -22,6 +23,7 @@ std::string convertToUtf8(const std::string &input, UINT codePage)
     return utf8;
 }
 #else
+#define CP850 "CP850"
 std::string convertToUtf8(const std::string &input, const std::string &fromEncoding)
 {
     iconv_t cd = iconv_open("UTF-8", fromEncoding.c_str());
@@ -79,81 +81,81 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
 
         for (int rec = 0; rec < numRecords; rec++)
         {
+                s_tm record;
             for (int field = 0; field < numFields; field++)
             {
-                s_tm record;
                 if (DBFIsAttributeNULL(dbf, rec, field))
                     continue;
                 switch (field)
                 {
                 case 0:
-                    record.TM_UNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_UNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 1:
-                    record.TM_UTIPUS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_UTIPUS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 2:
-                    record.TM_ISZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_ISZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 3:
-                    record.TM_HNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_HNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 4:
-                    record.TM_CIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_CIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 5:
-                    record.ADOSZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ADOSZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 6:
-                    record.TM_KEZDATE = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_KEZDATE = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 7:
-                    record.TM_HATARIDO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_HATARIDO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 8:
-                    record.TM_HIVHELY = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_HIVHELY = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 9:
-                    record.ELSO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ELSO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 10:
-                    record.TM_TIPUSRC = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_TIPUSRC = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 11:
-                    record.SORBAN = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.SORBAN = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 12:
-                    record.TM_JEGYZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_JEGYZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 13:
-                    record.TM_BIRHAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_BIRHAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 14:
-                    record.TM_BIRSZLS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_BIRSZLS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 15:
-                    record.TM_BIRDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_BIRDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 16:
-                    record.TM_BIRO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_BIRO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 17:
-                    record.TM_FNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_FNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 18:
-                    record.TM_FIRSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_FIRSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 19:
-                    record.TM_FVAROS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_FVAROS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 20:
-                    record.TM_FCIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TM_FCIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 default:
                     break;
                 }
-                tm_records.push_back(record);
             }
+                tm_records.push_back(record);
         }
         return tm_records;
     }
@@ -164,94 +166,94 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
 
         for (int rec = 0; rec < numRecords; rec++)
         {
+                s_uj record;
             for (int field = 0; field < numFields; field++)
             {
                 // std::println("{}", convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850"));
-                s_uj record;
                 if (DBFIsAttributeNULL(dbf, rec, field))
                     continue;
                 switch (field)
                 {
                 case 0:
-                    record.NEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.NEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 1:
-                    record.VAROS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.VAROS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 2:
-                    record.UTCA = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.UTCA = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 3:
-                    record.ADOSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ADOSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 4:
-                    record.IRSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.IRSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 5:
-                    record.KDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.KDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 6:
-                    record.VDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.VDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 7:
-                    record.UJ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.UJ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 8:
-                    record.RDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.RDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 9:
-                    record.MDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.MDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 10:
-                    record.CSODTIP = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.CSODTIP = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 11:
-                    record.HSZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.HSZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 12:
-                    record.RKOD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.RKOD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 13:
-                    record.RIDO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.RIDO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 14:
-                    record.MODOSIT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.MODOSIT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 15:
-                    record.JEGYZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.JEGYZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 16:
-                    record.BIRHAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.BIRHAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 17:
-                    record.BIRSZLSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.BIRSZLSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 18:
-                    record.BIRDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.BIRDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 19:
-                    record.BIRO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.BIRO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 20:
-                    record.FNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.FNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 21:
-                    record.FIRSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.FIRSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 22:
-                    record.FVAROS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.FVAROS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 23:
-                    record.FCIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.FCIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 24:
-                    record.REKORD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.REKORD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 default:
                     break;
                 }
-                uj_records.push_back(record);
             }
+                uj_records.push_back(record);
         }
 
         std::println("4. UJ rekord: {}", uj_records[3].NEV);
@@ -264,123 +266,123 @@ std::optional<std::variant<std::vector<s_tm>, std::vector<s_uj>, std::vector<s_t
 
         for (int rec = 0; rec < numRecords; rec++)
         {
+                s_tszem record;
             for (int field = 0; field < numFields; field++)
             {
-                s_tszem record;
                 if (DBFIsAttributeNULL(dbf, rec, field))
                     continue;
                 switch (field)
                 {
                 case 0:
-                    record.MUTATO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.MUTATO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 1:
-                    record.SZEMSZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.SZEMSZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 2:
-                    record.NEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.NEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 3:
-                    record.ORSZAG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ORSZAG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 4:
-                    record.IR_SZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.IR_SZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 5:
-                    record.UT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.UT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 6:
-                    record.MEGJ_JELZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.MEGJ_JELZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 7:
-                    record.MEGJ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.MEGJ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 8:
-                    record.MOD_DAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.MOD_DAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 9:
-                    record.TIPUS_JELZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TIPUS_JELZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 10:
-                    record.TULTIP = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TULTIP = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 11:
-                    record.KONYVVEZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.KONYVVEZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 12:
-                    record.TARSASAG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TARSASAG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 13:
-                    record.ERV_ATIPUS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ERV_ATIPUS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 14:
-                    record.AKT_ATIPUS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.AKT_ATIPUS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 15:
-                    record.AGAZAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.AGAZAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 16:
-                    record.ERTKOD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ERTKOD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 17:
-                    record.SZULDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.SZULDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 18:
-                    record.K_AZON = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.K_AZON = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 19:
-                    record.JEL1 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.JEL1 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 20:
-                    record.JEL2 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.JEL2 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 21:
-                    record.JEL3 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.JEL3 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 22:
-                    record.JEL4 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.JEL4 = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 23:
-                    record.ALLKOD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ALLKOD = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 24:
-                    record.CSOPMEGJEL = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.CSOPMEGJEL = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 25:
-                    record.TORLOKA = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.TORLOKA = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 26:
-                    record.KOVTRANZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.KOVTRANZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 27:
-                    record.HELYSEG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.HELYSEG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 28:
-                    record.LEVORSZAG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.LEVORSZAG = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 29:
-                    record.LEVIR_SZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.LEVIR_SZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 30:
-                    record.LEVUT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.LEVUT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 31:
-                    record.NEV_PTR = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.NEV_PTR = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 32:
-                    record.CIM_PTR = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.CIM_PTR = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 33:
-                    record.LEVCIM_PTR = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.LEVCIM_PTR = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 case 34:
-                    record.ELUGY = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
-                    break;
+                    record.ELUGY = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                    continue;
                 default:
                     break;
                 }
-                tszem_records.push_back(record);
             }
+                tszem_records.push_back(record);
         }
         return tszem_records;
     }

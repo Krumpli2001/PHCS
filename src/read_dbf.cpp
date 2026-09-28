@@ -1,4 +1,6 @@
 #include <read_dbf.hpp>
+#include <tm.hpp>
+#include <uj.hpp>
 
 #ifdef _WIN64
 #include <windows.h>
@@ -48,7 +50,7 @@ std::string convertToUtf8(const std::string &input, const std::string &fromEncod
 }
 #endif
 
-void read_dbf(std::string file_name)
+void read_dbf(std::string file_name, dbf_tipus tipus)
 {
     DBFHandle dbf = DBFOpen(file_name.c_str(), "rb");
     if (dbf == nullptr)
@@ -70,21 +72,117 @@ void read_dbf(std::string file_name)
         int width, decimals;
         DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName.data(), &width, &decimals);
         std::string output = convertToUtf8(fieldName.data(), "CP850");
-        std::cout << fieldName.size() << ' ' << width << '\n';
-        std::println("{}", fieldName.data());
+        // std::cout << fieldName.size() << ' ' << width << '\n';
+        // std::println("{}", fieldName.data());
     }
 
-    for (int rec = 0; rec < numRecords; rec++)
+    if (tipus == TM)
     {
-        for (int field = 0; field < numFields; field++)
+        std::vector<s_tm> tm_records;
+        tm_records.reserve(numRecords);
+
+        for (int rec = 0; rec < numRecords; rec++)
         {
-            if (DBFIsAttributeNULL(dbf, rec, field))
-                continue;
-            std::string value = DBFReadStringAttribute(dbf, rec, field);
-            std::print("{} ", convertToUtf8(value, "CP850"));
+            for (int field = 0; field < numFields; field++)
+            {
+                tm_records.emplace_back(); // Add a new s_tm object for each record
+                if (DBFIsAttributeNULL(dbf, rec, field))
+                    continue;
+                switch (field)
+                {
+                case 0:
+                    tm_records[rec].TM_UNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    // std::println("{}", tm_records[rec].TM_UNEV);
+                    break;
+                case 1:
+                    tm_records[rec].TM_UTIPUS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 2:
+                    tm_records[rec].TM_ISZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 3:
+                    tm_records[rec].TM_HNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 4:
+                    tm_records[rec].TM_CIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 5:
+                    tm_records[rec].ADOSZAM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 6:
+                    tm_records[rec].TM_KEZDATE = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 7:
+                    tm_records[rec].TM_HATARIDO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 8:
+                    tm_records[rec].TM_HIVHELY = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 9:
+                    tm_records[rec].ELSO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 10:
+                    tm_records[rec].TM_TIPUSRC = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 11:
+                    tm_records[rec].SORBAN = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 12:
+                    tm_records[rec].TM_JEGYZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 13:
+                    tm_records[rec].TM_BIRHAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 14:
+                    tm_records[rec].TM_BIRSZLS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 15:
+                    tm_records[rec].TM_BIRDAT = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 16:
+                    tm_records[rec].TM_BIRO = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 17:
+                    tm_records[rec].TM_FNEV = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 18:
+                    tm_records[rec].TM_FIRSZ = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 19:
+                    tm_records[rec].TM_FVAROS = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                case 20:
+                    tm_records[rec].TM_FCIM = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850");
+                    break;
+                default:
+                    break;
+                }
+            }
+            // std::cout << "\n";
         }
-        std::cout << "\n";
+        std::println("{}", tm_records[2].ADOSZAM);
     }
+    else if (tipus == UJ)
+    {
+        std::vector<s_uj> uj_records;
+        uj_records.reserve(numRecords);
+    }
+    else if (tipus == TSZEM)
+    {
+        std::cout << "TSZEM\n";
+    }
+
+    // for (int rec = 0; rec < numRecords; rec++)
+    // {
+    //     for (int field = 0; field < numFields; field++)
+    //     {
+    //         if (DBFIsAttributeNULL(dbf, rec, field))
+    //             continue;
+    //         std::string value = DBFReadStringAttribute(dbf, rec, field);
+    //         std::print("{} ", convertToUtf8(value, "CP850"));
+    //     }
+    //     std::cout << "\n";
+    // }
 
     DBFClose(dbf);
 }

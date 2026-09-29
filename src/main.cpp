@@ -7,7 +7,7 @@ auto main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) -> int
 
     auto xlsx_records = read_xlsx(argv[1]);
 
-    // auto tm_records = read_dbf(argv[1], TM);
+    auto tm_records = read_dbf(argv[1], TM);
     // auto uj_records = read_dbf(argv[2], UJ);
     // auto tszem_records = read_dbf(argv[3], TSZEM);
 
@@ -24,6 +24,13 @@ auto main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) -> int
     // if (tszem_records.has_value())
     // {
     //     std::println("4. TSZEM rekord: {}", std::get<std::vector<s_tszem>>(tszem_records.value())[3].NEV);
+    // }
+
+    // if (xlsx_records.has_value())
+    // {
+    //     // std::println("4. XLSX rekord: {}", std::get<std::vector<std::array<std::string, 29>>>(xlsx_records.value())[3][s_xlsx::Titulus_nélküli_név]);
+    //     auto record = (*xlsx_records)[3][s_xlsx::Mutató];
+    //     std::println("4. XLSX rekord: {}", record);
     // }
 
     // std::cin>> std::ws;

@@ -12,22 +12,28 @@ std::string cellToString(const OpenXLSX::XLCellValue& value) {
     }
 }
 
-std::optional<std::vector<s_xlsx>> read_xlsx(std::string file_name){
+std::optional<std::vector<std::array<std::string, 29>>> read_xlsx(std::string file_name){
     OpenXLSX::XLDocument doc;
     doc.open(file_name);
     auto wks = doc.workbook().worksheet("Adózók adatai");
-    std::vector<s_xlsx> xlsx_data;
+    std::vector<std::array<std::string, 29>> xlsx_data;
     xlsx_data.reserve(wks.rowCount()); // Reserve space for all rows except the header
 
     auto range = wks.range(); // full used range
     for (const auto& row : wks.rows()) {
         auto values = std::vector<OpenXLSX::XLCellValue>(row.values());
-        for (const auto& value : values) {
-            std::cout << cellToString(value) << "\t";
+        // auto sor = std::array<std::string, 29>{cellToString(row.values())};
+        std::array<std::string, 29> sor{};
+        for (size_t i = 0; i < values.size() && i < sor.size(); ++i) {
+            sor[i] = cellToString(values[i]);
         }
-        std::cout << "\n";
+        xlsx_data.push_back(sor);
+        // for (const auto& value : values) {
+        //     // std::cout << cellToString(value) << "\t";
+        // }
+        // std::cout << "\n";
     }
     
     doc.close();
-    return std::nullopt;
+    return xlsx_data;
 }

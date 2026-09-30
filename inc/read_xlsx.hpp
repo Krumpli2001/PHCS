@@ -3,7 +3,7 @@
 #include <OpenXLSX.hpp>
 #include "phc.hpp"
 
-enum s_xlsx {
+enum class s_xlsx {
     Mutató,
     IP_ID,
     Típus,

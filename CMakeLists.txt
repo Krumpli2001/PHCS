@@ -37,8 +37,12 @@ find_package(wxWidgets CONFIG REQUIRED)
 
 file(GLOB SOURCES "src/*.cpp")
 
-# add_executable(${PROJECT_NAME} src/main.cpp)
-add_executable(${PROJECT_NAME} ${SOURCES})
+if(WIN32)
+    # On Windows build as a GUI app so the wxWidgets-provided entry point is used
+    add_executable(${PROJECT_NAME} WIN32 ${SOURCES})
+else()
+    add_executable(${PROJECT_NAME} ${SOURCES})
+endif()
 target_include_directories(${PROJECT_NAME} PRIVATE inc)
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)

@@ -90,6 +90,12 @@ void MyFrame::OnSubmit([[maybe_unused]] wxCommandEvent &event)
 
     // std::println("Szia világ2!");
 
-    compare_records(tm_records, dbf_tipus::TM, xlsx_records);
-    compare_records(uj_records, dbf_tipus::UJ, xlsx_records);
+    std::string output;
+
+    compare_records(tm_records, dbf_tipus::TM, xlsx_records, &output);
+    compare_records(uj_records, dbf_tipus::UJ, xlsx_records, &output);
+
+    std::ofstream out("output.csv");
+    out << output;
+    out.close();
 }

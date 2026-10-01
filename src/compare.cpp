@@ -15,7 +15,7 @@ void adoszam_alakitas(std::string &adoszam)
     adoszam = adoszam2;
 }
 
-void compare_records(std::optional<std::variant<std::vector<std::array<std::string, dbf_tipus::TM>>, std::vector<std::array<std::string, dbf_tipus::UJ>>, std::vector<std::array<std::string, dbf_tipus::TSZEM>>>> dbf, dbf_tipus tipus, std::optional<std::vector<std::array<std::string, 29UL>>> xlsx)
+void compare_records(std::optional<std::variant<std::vector<std::array<std::string, dbf_tipus::TM>>, std::vector<std::array<std::string, dbf_tipus::UJ>>, std::vector<std::array<std::string, dbf_tipus::TSZEM>>>> dbf, dbf_tipus tipus, std::optional<std::vector<std::array<std::string, 29UL>>> xlsx, std::string *output)
 {
     if (tipus == dbf_tipus::TM)
     {
@@ -30,7 +30,8 @@ void compare_records(std::optional<std::variant<std::vector<std::array<std::stri
 
                 if (std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::ADOSZAM)] == xadoszam)
                 {
-                    std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_UNEV)]);
+                    //std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_UNEV)]);
+					*output += "Cégnév: " + std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_UNEV)] + ';' + "Adószám: " + std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::ADOSZAM)] + '\n';
                 }
             }
         }
@@ -48,7 +49,8 @@ void compare_records(std::optional<std::variant<std::vector<std::array<std::stri
 
                 if (std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::ADOSZ)] == xadoszam)
                 {
-                    std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::NEV)]);
+                    //std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::NEV)]);
+					*output += "Cégnév: " + std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::NEV)] + ';' + "Adószám: " + std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::ADOSZ)] + '\n';
                 }
             }
         }

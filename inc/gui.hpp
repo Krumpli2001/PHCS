@@ -3,6 +3,7 @@
 #include "phc.hpp"
 #include <wx/wx.h>
 #include <wx/filepicker.h>
+#include <fstream>
 
 class MyApp : public wxApp
 {

@@ -21,31 +21,17 @@ void compare_records(std::optional<std::variant<std::vector<std::array<std::stri
     {
         std::println("Összehasonlítás TM rekordokkal");
 
-        for (auto i = 0; i < std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value()).size(); i++)
+        for (std::size_t i = 0; i < std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value()).size(); i++)
         {
-            for (auto j = 0; j < (*xlsx).size(); j++)
+            for (std::size_t j = 0; j < (*xlsx).size(); j++)
             {
                 std::string xadoszam = (*xlsx)[j][static_cast<int>(s_xlsx::Adószám)];
                 adoszam_alakitas(xadoszam);
-                // std::string xadoszam2 = "";
-
-                // for(auto c : xadoszam)
-                // {
-                //     if (c != '-')
-                //     {
-                //         xadoszam2 += c;
-                //     }
-                // }
 
                 if (std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::ADOSZAM)] == xadoszam)
                 {
                     std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_UNEV)]);
                 }
-
-                // if (std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::ADOSZAM)] == (*xlsx)[j][static_cast<int>(s_xlsx::Adószám)])
-                // {
-                //     std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_UNEV)]);
-                // }
             }
         }
     }
@@ -53,9 +39,9 @@ void compare_records(std::optional<std::variant<std::vector<std::array<std::stri
     if (tipus == dbf_tipus::UJ)
     {
         std::println("Összehasonlítás UJ rekordokkal");
-        for (auto i = 0; i < std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value()).size(); i++)
+        for (std::size_t i = 0; i < std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value()).size(); i++)
         {
-            for (auto j = 0; j < (*xlsx).size(); j++)
+            for (std::size_t j = 0; j < (*xlsx).size(); j++)
             {
                 std::string xadoszam = (*xlsx)[j][static_cast<int>(s_xlsx::Adószám)];
                 adoszam_alakitas(xadoszam);
@@ -64,11 +50,6 @@ void compare_records(std::optional<std::variant<std::vector<std::array<std::stri
                 {
                     std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::NEV)]);
                 }
-
-                // if (std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::ADOSZAM)] == (*xlsx)[j][static_cast<int>(s_xlsx::Adószám)])
-                // {
-                //     std::println("Cégnév: {}", std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_UNEV)]);
-                // }
             }
         }
     }

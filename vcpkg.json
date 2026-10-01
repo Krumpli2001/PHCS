@@ -3,6 +3,7 @@
   "version": "0.5.1",
   "dependencies": [
     "openxlsx",
-    "shapelib"
+    "shapelib",
+    "wxwidgets"
   ]
 }

@@ -31,6 +31,7 @@ find_package(pugixml CONFIG REQUIRED)
 find_package(miniz CONFIG REQUIRED)
 find_package(OpenXLSX CONFIG REQUIRED)
 find_package(shapelib CONFIG REQUIRED)
+find_package(wxWidgets CONFIG REQUIRED)
 
 # --- Executable ---
 
@@ -43,3 +44,4 @@ target_include_directories(${PROJECT_NAME} PRIVATE inc)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
 target_link_libraries(${PROJECT_NAME} PRIVATE OpenXLSX::OpenXLSX)
 target_link_libraries(${PROJECT_NAME} PRIVATE shapelib::shp)
+target_link_libraries(${PROJECT_NAME} PRIVATE wx::core wx::base)

@@ -92,10 +92,14 @@ void MyFrame::OnSubmit([[maybe_unused]] wxCommandEvent &event)
 
     std::string output;
 
+    // ensure the CSV header is encoded as UTF-8 in the binary output
+    output += "Cégnév;Adószám\n";
+
     compare_records(tm_records, dbf_tipus::TM, xlsx_records, &output);
     compare_records(uj_records, dbf_tipus::UJ, xlsx_records, &output);
 
-    std::ofstream out("output.csv");
-    out << output;
+    // write as UTF-8 with BOM so programs like Excel recognize the encoding
+    std::ofstream out("output.csv", std::ios::binary);
+    out << "\xEF\xBB\xBF" << output;
     out.close();
 }

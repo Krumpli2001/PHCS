@@ -8,18 +8,31 @@
 
 // UTF-8-á
 #ifdef _WIN64
-#define CP850 CP_ACP
+//#ifndef CP850
+#define CP850 850
+//#endif
 std::string convertToUtf8(const std::string &input, UINT codePage)
 {
+    if (input.empty())
+        return {};
+
     int wideLen = MultiByteToWideChar(codePage, 0, input.c_str(), -1, nullptr, 0);
-    std::wstring wide(wideLen, 0);
-    MultiByteToWideChar(codePage, 0, input.c_str(), -1, &wide[0], wideLen);
+    if (wideLen == 0)
+        return {};
+
+    std::wstring wide(static_cast<size_t>(wideLen), L'\0');
+    if (MultiByteToWideChar(codePage, 0, input.c_str(), -1, &wide[0], wideLen) == 0)
+        return {};
 
     int utf8Len = WideCharToMultiByte(CP_UTF8, 0, wide.c_str(), -1, nullptr, 0, nullptr, nullptr);
-    std::string utf8(utf8Len, 0);
-    WideCharToMultiByte(CP_UTF8, 0, wide.c_str(), -1, &utf8[0], utf8Len, nullptr, nullptr);
+    if (utf8Len == 0)
+        return {};
 
-    utf8.resize(utf8Len - 1); // drop null terminator
+    std::string utf8(static_cast<size_t>(utf8Len), '\0');
+    if (WideCharToMultiByte(CP_UTF8, 0, wide.c_str(), -1, &utf8[0], utf8Len, nullptr, nullptr) == 0)
+        return {};
+
+    utf8.resize(static_cast<size_t>(utf8Len - 1)); // drop null terminator
     return utf8;
 }
 #else

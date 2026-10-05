@@ -10,34 +10,34 @@ bool MyApp::OnInit()
     return true;
 }
 
-MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, "Hello World", wxDefaultPosition, wxSize(400, 300))
+MyFrame::MyFrame() : wxFrame(nullptr, wxID_ANY, wxString::FromUTF8("Csőd értesítő"), wxDefaultPosition, wxSize(400, 300))
 {
 
     wxPanel *panel = new wxPanel(this);
     wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
-    m_field1 = new wxFilePickerCtrl(panel, wxID_ANY, wxEmptyString, "TM.dbf fájl kiválasztása",
-                                    "All files (*.*)|*.*", wxDefaultPosition, wxDefaultSize,
-                                    wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST);
-    m_field2 = new wxFilePickerCtrl(panel, wxID_ANY, wxEmptyString, "UJ.dbf fájl kiválasztása",
-                                    "All files (*.*)|*.*", wxDefaultPosition, wxDefaultSize,
-                                    wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST);
-    m_field3 = new wxFilePickerCtrl(panel, wxID_ANY, wxEmptyString, "XLSX fájl kiválasztása",
-                                    "All files (*.*)|*.*", wxDefaultPosition, wxDefaultSize,
-                                    wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST);
-    /*m_field4 = new wxFilePickerCtrl(panel, wxID_ANY, wxEmptyString, "CSV fájl neve",
-        "All files (*.*)|*.*", wxDefaultPosition, wxDefaultSize,
-        wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST);*/
-    wxButton *submit = new wxButton(panel, wxID_ANY, "Submit");
+    m_field1 = new wxFilePickerCtrl(panel, wxID_ANY, wxEmptyString, wxString::FromUTF8("TM.dbf fájl kiválasztása"),
+                                    wxString::FromUTF8("Minden Fájl (*.*)|*.*"), wxDefaultPosition, wxDefaultSize,
+                                    wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST, wxDefaultValidator);
+    m_field1->GetPickerCtrl()->SetLabel(wxString::FromUTF8("Tallózás..."));
+    m_field2 = new wxFilePickerCtrl(panel, wxID_ANY, wxEmptyString, wxString::FromUTF8("UJ.dbf fájl kiválasztása"),
+                                    wxString::FromUTF8("Minden Fájl (*.*)|*.*"), wxDefaultPosition, wxDefaultSize,
+                                    wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST, wxDefaultValidator);
+    m_field2->GetPickerCtrl()->SetLabel(wxString::FromUTF8("Tallózás..."));
+    m_field3 = new wxFilePickerCtrl(panel, wxID_ANY, wxEmptyString, wxString::FromUTF8("XLSX fájl kiválasztása"),
+                                    wxString::FromUTF8("Minden Fájl (*.*)|*.*"), wxDefaultPosition, wxDefaultSize,
+                                    wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST, wxDefaultValidator);
+    m_field3->GetPickerCtrl()->SetLabel(wxString::FromUTF8("Tallózás..."));
 
-    sizer->Add(new wxStaticText(panel, wxID_ANY, "TM.dbf file:"), 0, wxLEFT | wxTOP, 10);
+    wxButton *submit = new wxButton(panel, wxID_ANY, wxString::FromUTF8("Generálás"));
+
+    sizer->Add(new wxStaticText(panel, wxID_ANY, wxString::FromUTF8("TM.dbf fájl:")), 0, wxLEFT | wxTOP, 10);
     sizer->Add(m_field1, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
-    sizer->Add(new wxStaticText(panel, wxID_ANY, "UJ.dbf file:"), 0, wxLEFT | wxTOP, 10);
+    sizer->Add(new wxStaticText(panel, wxID_ANY, wxString::FromUTF8("UJ.dbf fájl:")), 0, wxLEFT | wxTOP, 10);
     sizer->Add(m_field2, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
-    sizer->Add(new wxStaticText(panel, wxID_ANY, "XLSX file:"), 0, wxLEFT | wxTOP, 10);
+    sizer->Add(new wxStaticText(panel, wxID_ANY, wxString::FromUTF8("XLSX fájl:")), 0, wxLEFT | wxTOP, 10);
     sizer->Add(m_field3, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
-    /*sizer->Add(new wxStaticText(panel, wxID_ANY, "CSV file:"), 0, wxLEFT | wxTOP, 10);
-    sizer->Add(m_field4, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);*/
+
     sizer->Add(submit, 0, wxALIGN_RIGHT | wxALL, 10);
 
     panel->SetSizer(sizer);
@@ -74,43 +74,20 @@ void MyFrame::OnSubmit([[maybe_unused]] wxCommandEvent &event)
         return;
     }
 
-    
-
     auto tm_records = read_dbf(a.utf8_string(), dbf_tipus::TM);
     auto uj_records = read_dbf(b.utf8_string(), dbf_tipus::UJ);
     auto xlsx_records = read_xlsx(c.utf8_string());
 
-    // std::println("Selected files:");
-    // std::println("1: {}", a.utf8_string());
-    // std::println("2: {}", b.utf8_string());
-    // std::println("3: {}", c.utf8_string());
-
-    /*wxMessageBox(wxString::Format("1: %s\n2: %s\n3: %s", a, b, c),
-                 "Selected files", wxOK | wxICON_INFORMATION);*/
-
-    // auto tm_records = read_dbf(argv[1], dbf_tipus::TM);
-    // auto uj_records = read_dbf(argv[2], dbf_tipus::UJ);
-    // auto tszem_records = read_dbf(argv[3], dbf_tipus::TSZEM);
-    // auto xlsx_records = read_xlsx(argv[4]);
-
-    // std::println("Szia világ2!");
-
     std::string output;
 
-    // ensure the CSV header is encoded as UTF-8 in the binary output
     output += "Cégnév;Adószám\n";
 
     compare_records(tm_records, dbf_tipus::TM, xlsx_records, &output);
     compare_records(uj_records, dbf_tipus::UJ, xlsx_records, &output);
 
-    // write as UTF-8 with BOM so programs like Excel recognize the encoding
-    /*std::ofstream out("output.csv", std::ios::binary);
-    out << "\xEF\xBB\xBF" << output;
-    out.close();*/
-
     wxFileDialog saveDialog(this, "Save file", "", "",
-        "Comma separated values (*.csv)|*.csv|All files (*.*)|*.*",
-        wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+                            "Comma separated values (*.csv)|*.csv|All files (*.*)|*.*",
+                            wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
     if (saveDialog.ShowModal() == wxID_CANCEL)
         return;
@@ -123,8 +100,4 @@ void MyFrame::OnSubmit([[maybe_unused]] wxCommandEvent &event)
     }
 
     file.Write(output.data(), output.size());
-
-    /*wxTextOutputStream text(file);
-    text << m_textCtrl->GetValue();*/
-
 }

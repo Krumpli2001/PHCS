@@ -1,27 +1,27 @@
 Cégnév;Adószám
 Összehasonlítás TM rekordokkal
-FILENA Bt.;26750468108;
-Beatrix Weingarten Kft. "f.a.";32805684208;
-Vital Feeling Kft. "v.a.";25478367108;
-Carp Fishing Store Kft. "f.a.";32183324208;
-R & J General Bau Építőipari Kft. "f.a.";25044928208;
-Proper IT Bt. "kt.a.";21837658208;
-In Spot Creative Agency Kft. "v.a.";32214350108;
-Coupling Kft. "v.a.";11134507208;
-Verda Alkatrész Kft. "v.a.";23026005208;
-Ottava Kft.;27193657242;
-Dv & Vs Cars Kft. "kt.a.";32979420208;
-Madibau Kft. "f.a.";27435333208;
-Leonidas Zrt. "f.a.";22784230208;
-DUNAHÚS Kft.;14472305213;
-METALWERK Kft.;24794589212;
-HENGER BAU Kft.;14399949208;
-Mv Office Kkt. "v.a.";22493684208;
-Laser-Planing Bt. "v.a.";25515264108;
-BIHARI MAGYARORSZÁG Kft.;12869123208;
-Transzfer-Hungary Kft. "v.a.";25364219108;
+Adószám;Név;Irsz;Utca;Tipus;Irsz;Név;Cím;Kezdet;Határidő;Hivhely;Első;Tipr.;Sorban;Jegyz.;B.hat.;B.szls;B.dat;Bíró;Fnév;Irsz;Város;Cím
+26750468108;FILENA Bt.;9436;Szabadság u. 22.;VE;9436;Fertïszéplak;Szabadság u. 22.;20260819;20260928;CK2026/34/I. kötet - 2026.08.19./2026-08;0;;;0806014999;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+32805684208;BEATRIX WEINGARTEN Kft.;9400;Mátyás király u. 7/2/11.;FE;9400;Sopron;Mátyás király u. 7/2/11.;20260901;20261011;Cegkozlony.hu;0;;;809037705;14.Fpk.212/2026/13.;100330010148307524000004;;Gyïri Törvényszék;MORECO Tanácsadó Kft.;1137;Budapest;Pozsonyi út 14. IV/20.
+25478367108;Vital Feeling Kft.;9400;Pihenïkereszt u. 2.;VE;9400;Sopron;Pihenïkereszt u. 2.;20260903;20261013;CK2026/36/I. kötet - 2026.09.03./2026-09;0;;;0809027811;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+32183324208;CARP FISHING STORE Kft.;9400;Ágfalvi út 16.;FE;9400;Sopron;Ágfalvi út 16.;20260825;20261004;Cegkozlony.hu;0;;;809035403;14.Fpk.214/2026/10.;100330010148307524000004;;Gyïri Törvényszék;KDÉ & Partners Felszámoló Kft.;1095;Budapest;Ipar u. 5.
+25044928208;R & J General Bau Építïipari Kft.;9400;Lófuttató u. 6/A;FE;9400;Sopron;Lófuttató u. 6/A;20260826;20261005;Cegkozlony.hu;0;;;809030262;14.Fpk.236/2026/13.;100330010148307524000004;;Gyïri Törvényszék;HUNGARO-JUSTITIA Üzleti Tanácsadó Kft.;8200;Veszprém;Stadion u. 11 B/fszt./3.
+14737800208;BOB a MESTER Kft.;3400;Bogácsi út 48.;FE;3400;Mezïkövesd;Bogácsi út 48.;20260902;20261012;Cegkozlony.hu;0;;;509037959;10.Fpk.393/2026/10.;100270060148311624000004;;Miskolci Törvényszék;Fej-Számoló Felszámoló Gazdasági és Tanácsadó Kft.;1094;Budapest;Páva u. 8.
+21837658208;PROPER IT Informatikai és Szolgáltató Bt.;9400;Szépvölgyi u. 6/B;KT;9400;Sopron;Szépvölgyi u. 6/B;20260828;20261007;Cegkozlony.hu;0;;;806011639;Cgt.08-26-000450/4;;;Gyïri Törvényszék Cégbírósága;;;;
+32214350108;In spot Creative Agency Kft.;9400;Lehár Ferenc u. 1/A;VE;9400;Sopron;Lehár Ferenc u. 1/A;20260901;20261011;CK2026/35/I. kötet - 2026.09.01./2026-09;0;;;0809035536;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+11134507208;COUPLING Kereskedelmi és Szolgáltató Kft.;9400;Kertesi u. 5.;VE;9400;Sopron;Kertesi u. 5.;20260916;20261026;CK2026/37/I. kötet - 2026.09.16./2026-09;-;;;0809004084;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+23026005208;Verda Alkatrész Kft.;9400;Hunyadi J. út 25.;VE;9400;Sopron;Hunyadi J. út 25.;20260916;20261026;CK2026/37/I. kötet - 2026.09.16./2026-09;-;;;0809020848;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+27193657242;Ottava Kft.;1068;Városligeti fasor 44.;VE;1068;Budapest;Városligeti fasor 44.;20260820;20260929;CK2026/34/I. kötet - 2026.08.20./2026-08;0;;;0109452044;.Fpk.  -  -      /  .;;;Fïvárosi Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+32979420208;DV & VS Cars Kft.;9400;Mátyás király u. 7. 1. em. 8.;KT;9400;Sopron;Mátyás király u. 7. 1. em. 8.;20260907;20261106;Cegkozlony.hu;0;;;809038344;Cgt.08-26-000392/4;;;Gyïri Törvényszék Cégbírósága;;;;
+27435333208;MADIBAU Építïipari Kft.;9400;Mátyás király u. 7/I/8.;FE;9400;Sopron;Mátyás király u. 7/I/8.;20260909;20261019;Cegkozlony.hu;0;;;809033570;11.Fpk.201/2026/14.;100330010148307524000004;;Gyïri Törvényszék;DUEL-CORP Tanácsadó Zrt.;6722;Szeged;Béke u. 2 C.
+22784230208;LEONIDAS Zrt.;9400;József Attila u. 26. fszt. 1.;FE;9400;Sopron;József Attila u. 26. fszt. 1.;20260909;20261019;Cegkozlony.hu;0;;;810001940;5.Fpk.190/2026/14.;100330010148307524000004;;Gyïri Törvényszék;CERES Gazdasági Tanácsadó és Felszámoló Kft.;1135;Budapest;Tahi u. 79. A./fszt./3.
+14472305213;DUNAHÚS Kereskedelmi Kft.;2310;Rákóczi u. 78.;VE;2310;Szigetszentmiklós;Rákóczi u. 78.;20260909;20261019;CK2026/36/I. kötet - 2026.09.09./2026-09;0;;;1309123151;.Fpk.  -  -      /  .;;;Budapest Környéki Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+24794589212;Metalwerk Kft.;3170;Ludányi u. 1691/1.;FE;3170;Szécsény;Ludányi u. 1691/1.;20260810;20260919;Cegkozlony.hu;0;;;1209010089;4.Fpk.177/2026/8-I.;100370050148303724000004;;Balassagyarmati Törvényszék;Capital Control Partner Kft.;1097;Budapest;Táblás u. 36-38.
+14399949208;HENGER BAU Kft.;9484;Petïfi Sándor u. 28.;VE;9484;Pereszteg;Petïfi Sándor u. 28.;20260909;20261019;CK2026/36/I. kötet - 2026.09.09./2026-09;0;;;0809016696;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+22493684208;MV OFFICE Kereskedelmi és Szolgáltató Kkt.;9400;Újd¹lï u. 10.;VE;9400;Sopron;Újd¹lï u. 10.;20260912;20261022;CK2026/37/I. kötet - 2026.09.12./2026-09;-;;;0803001859;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+25515264108;LASER-PLANING Mérnöki és Szolgáltató Bt.;9400;Lïver krt. 17.;VE;9400;Sopron;Lïver krt. 17.;20260912;20261022;CK2026/37/I. kötet - 2026.09.12./2026-09;-;;;0806014588;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+12869123208;Bihari Magyarország Kereskedelmi Kft.;9421;1118/11 hrsz.;VE;9421;Fertïrákos;1118/11 hrsz.;20260826;20261005;CK2026/34/I. kötet - 2026.08.26./2026-08;0;;;0809010503;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+25364219108;Transzfer-Hungary Kft.;9400;Balfi út 16.;VE;9400;Sopron;Balfi út 16.;20260826;20261005;CK2026/34/I. kötet - 2026.08.26./2026-08;0;;;0809027463;.Fpk.  -  -      /  .;;;Gyïri Törvényszék Cégbírósága;;;;A végelszámolói feladatokat a
+11718433108;BENE PLACITO Tanácsadó Kft.;1132;Váci út 16 fszt. 12.;FE;1132;Budapest;Váci út 16 fszt. 12.;20260812;20260921;Cegkozlony.hu;0;;;109330290;28.Fpk.3.879/2026/9.;100320000148301324000004;;Fïvárosi Törvényszék;KDÉ & Partners Felszámoló Kft.;1095;Budapest;Ipar u. 5.
 Összehasonlítás UJ rekordokkal
-Laser-Planing Bt. "v.a.";25515264108;
-Mv Office Kkt. "v.a.";22493684208;
-Verda Alkatrész Kft. "v.a.";23026005208;
-Coupling Kft. "v.a.";11134507208;
+Adószám;Név;Irsz;Utca;Város;Utca;Irsz;Kdat;Vdat;Rdat;Mdat;Csodtip;Hszam.;Rkod;Rido;Jegyzet;Bhat;Bszlsz;Bdat;Bíró;Fnév;Irsz;Város;Cím

@@ -56,6 +56,7 @@ void compare_records(std::optional<std::variant<std::vector<std::array<std::stri
                                std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_FIRSZ)] + ';' +
                                std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_FVAROS)] + ';' +
                                std::get<std::vector<std::array<std::string, dbf_tipus::TM>>>(dbf.value())[i][static_cast<int>(s_tm::TM_FCIM)] + '\n';
+					break;
                 }
             }
         }
@@ -101,6 +102,7 @@ void compare_records(std::optional<std::variant<std::vector<std::array<std::stri
                                std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::FIRSZ)] + ';' +
                                std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::FVAROS)] + ';' +
                                std::get<std::vector<std::array<std::string, dbf_tipus::UJ>>>(dbf.value())[i][static_cast<int>(s_uj::FCIM)] + '\n';
+					break;
                 }
             }
         }

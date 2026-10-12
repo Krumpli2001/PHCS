@@ -8,8 +8,8 @@
 
 // UTF-8-á
 #ifdef _WIN64
-//#ifndef CP850
-#define CP850 850
+//#ifndef CP852
+#define CP852 852
 //#endif
 std::string convertToUtf8(const std::string &input, UINT codePage)
 {
@@ -36,7 +36,7 @@ std::string convertToUtf8(const std::string &input, UINT codePage)
     return utf8;
 }
 #else
-#define CP850 "CP850"
+#define CP852 "CP852"
 std::string convertToUtf8(const std::string &input, const std::string &fromEncoding)
 {
     iconv_t cd = iconv_open("UTF-8", fromEncoding.c_str());
@@ -84,7 +84,7 @@ std::optional<std::variant<std::vector<std::array<std::string, dbf_tipus::TM>>, 
         std::array<char, 12> fieldName;
         int width, decimals;
         [[maybe_unused]] DBFFieldType type = DBFGetFieldInfo(dbf, field, fieldName.data(), &width, &decimals);
-        // std::string output = convertToUtf8(fieldName.data(), "CP850");
+        // std::string output = convertToUtf8(fieldName.data(), "CP852");
     }
 
     if (tipus == dbf_tipus::TM)
@@ -99,7 +99,7 @@ std::optional<std::variant<std::vector<std::array<std::string, dbf_tipus::TM>>, 
             {
                 if (DBFIsAttributeNULL(dbf, rec, field))
                     continue;
-                record[field] = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                record[field] = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP852);
             }
             tm_records.push_back(record);
         }
@@ -116,10 +116,10 @@ std::optional<std::variant<std::vector<std::array<std::string, dbf_tipus::TM>>, 
             std::array<std::string, dbf_tipus::UJ> record;
             for (int field = 0; field < numFields; field++)
             {
-                // std::println("{}", convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP850"));
+                // std::println("{}", convertToUtf8(DBFReadStringAttribute(dbf, rec, field), "CP852"));
                 if (DBFIsAttributeNULL(dbf, rec, field))
                     continue;
-                record[field] = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                record[field] = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP852);
             }
             uj_records.push_back(record);
         }
@@ -138,7 +138,7 @@ std::optional<std::variant<std::vector<std::array<std::string, dbf_tipus::TM>>, 
             {
                 if (DBFIsAttributeNULL(dbf, rec, field))
                     continue;
-                record[field] = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP850);
+                record[field] = convertToUtf8(DBFReadStringAttribute(dbf, rec, field), CP852);
             }
             tszem_records.push_back(record);
         }

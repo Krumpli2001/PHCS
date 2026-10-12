@@ -80,7 +80,11 @@ void MyFrame::OnSubmit([[maybe_unused]] wxCommandEvent &event)
 
     std::string output;
 
-    output += "Cégnév;Adószám\n";
+    output += '\xEF';
+    output += '\xBB';
+    output += '\xBF';
+
+    //output += "Cégnév;Adószám\n";
 
     compare_records(tm_records, dbf_tipus::TM, xlsx_records, &output);
     compare_records(uj_records, dbf_tipus::UJ, xlsx_records, &output);
